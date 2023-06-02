@@ -1,0 +1,254 @@
+
+.logo {
+    font: normal normal bold 40px/60px American Typewriter;
+    color: #ffffff;
+    margin-top: 0;
+    text-align: center;
+}
+
+.base-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+}
+
+nav {
+    width: 20vw;
+    height: 100vh;
+    background: transparent linear-gradient(180deg, #BF6A06E0 0%, #BFB57DAD 100%) 0% 0% no-repeat padding-box;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+
+a {
+    text-decoration: none;
+    display: inline-block;
+    line-height: 2em;
+}
+
+li {
+    display: flex;
+    align-items: center;
+}
+
+li i {
+    font-size: 2em;
+
+}
+
+ul {
+    list-style-type: none;
+}
+
+.button {
+    display: inline-block;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: inset 0px 3px 10px #00000029, 0px 3px 50px #00000029;
+    border: 1px solid #707070;
+    border-radius: 28px;
+    width: 60%; /* Dowolna szerokość guzika */
+    text-align: center;
+    padding: 10px;
+    line-height: 20px;
+    margin: 20px;
+    font-size: 1.5em;
+    text-align: center;
+    font: normal normal normal 26px/32px Helvetica Neue;
+    color: #707070;
+    flex: 1;
+    letter-spacing: 0.7px;
+  }
+
+  .fa-solid{
+    width: 1em
+  }
+
+
+main {
+    width: 80vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em 2em;
+    border-bottom: 1px solid gray;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    height: 5%;
+}
+
+.header-button {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: inset 0px 3px 10px #00000029, 0px 3px 50px #00000029;
+    border: 1px solid #707070;
+    border-radius: 28px;
+    font-size: 1.5em;
+    color: #707070;
+    text-align: center;
+    width: 15%;
+    padding: 0.3em;
+}
+
+
+.search-bar{
+
+    width: 50%;
+}
+
+.search-bar>form>input{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: inset 0px 3px 10px #00000029, 0px 3px 50px #00000029;
+    border: 1px solid #707070;
+    border-radius: 28px;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 1.5em;
+    padding: 0.3em;
+    }
+
+section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2em;
+    padding: 2em;
+    overflow: scroll;
+    background: #B5A36533 0% 0% no-repeat padding-box;
+    height: 95%;
+}
+
+.meals>div>img {
+    height: 70%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 1em 1em 0 0;
+}
+
+
+.meals>div>div {
+    height: 30%;
+    
+}
+
+h2 {
+    text-align: left;
+    font: normal normal normal 26px/32px Helvetica Neue;
+    letter-spacing: 0px;
+    color: #707070;
+    margin: 0;
+}
+
+.meals>div>div {
+    background: #C5BA86 0% 0% no-repeat padding-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+p {
+    text-align: left;
+    font: normal normal normal 15px/17px Helvetica Neue;
+    letter-spacing: 0px;
+    color: #707070;
+}
+
+.like {
+    text-align: left;
+    font: normal normal bold 14px/24px Arial;
+    letter-spacing: 2px;
+    color: #C06E0C;
+}
+
+@media only screen and (max-width: 1200px) {
+.base-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+  .meals {
+    display: block;
+    overflow: auto;
+  }
+  
+  .meals>div {
+    width: 100%;
+    margin-bottom: 2em;
+  }
+  .button {
+    display: none;
+  }
+
+  nav {
+    width: 20vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  main {
+    width: 90vw;
+  }
+  .logo {
+    font: normal normal bold 30px/50px American Typewriter;
+    color: #ffffff;
+    margin-top: 0;
+    text-align: center;
+}
+    li i {
+        font-size: 5em;
+        padding: 1em 0em;
+    }
+
+    .meals>div>div{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 5px;
+    }
+
+    h2 {
+        font: normal normal normal 44px/55px Helvetica Neue;
+    }
+    
+    p {
+        font: normal normal normal 26px/32px Helvetica Neue;
+    }
+
+    .like {
+        text-align: left;
+        font: normal normal bold 26px/32px Arial;
+        letter-spacing: 5px;
+        color: #C06E0C;
+    }
+
+    .header-button {
+        font-size: 2em;
+    }
+
+    .search-bar>form>input{
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        box-shadow: inset 0px 3px 10px #00000029, 0px 3px 50px #00000029;
+        border: 1px solid #707070;
+        border-radius: 28px;
+        width: 100%;
+        text-align: center;
+        margin: 0;
+        box-sizing: border-box;
+        font-size: 2em;
+        padding: 1em;
+        }
+
+
+
+
+  
+}
