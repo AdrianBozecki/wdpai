@@ -10,13 +10,22 @@
         </div>
 
         <div class="login-container">
-            <form>
+            <form class="login", action="login", method="POST">
                 <div class="form-group">
+                    <div class="messages">
+                        <?php
+                        if(isset($messages)){
+                            foreach($messages as $message) {
+                                echo $message;
+                            }
+                        }
+                        ?>
+                    </div>
                     <input name="email" type="text" placeholder="email@email.com">
                     <input name="password" type="password" placeholder="password">
                 </div>
                 <div class="buttons">
-                    <button>sign in</button>
+                    <button type="submit">sign in</button>
                     <button>sign up</button>
                 </div>
                 
