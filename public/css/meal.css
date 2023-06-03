@@ -167,6 +167,27 @@ p {
     color: #C06E0C;
 }
 
+
+section.meal-form {
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.meal-form > form {
+    display: flex;
+    flex-direction: column;
+}
+
+.submit-button {
+}
+
+textarea {
+}
+
+
+
+
 @media screen and (max-width: 1000px) {
 .base-container {
     display: flex;

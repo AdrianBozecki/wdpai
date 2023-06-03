@@ -55,9 +55,9 @@
             </header>
             <section class="meals">
                 <div id="meal-1">
-                  <img src="public/img/img.png">
+                  <img src="public/uploads/<?= $meal->getImage() ?>">
                   <div class="space">
-                    <h2>Title</h2>
+                    <h2><?= $meal->getTitle() ?></h2>
                     <p>description</p>
                     <div class="like">
                       <i class="fas fa-heart">600</i>
@@ -65,61 +65,7 @@
                     </div>
                   </div>
                 </div>
-                <div id="meal-2">
-                  <img src="public/img/img.png">
-                  <div class="space">
-                    <h2>Title</h2>
-                    <p>description</p>
-                    <div class="like">
-                      <i class="fas fa-heart">600</i>
-                      <i class="fas fa-minus-square">101</i>
-                    </div>
-                  </div>
-                </div>                
-                <div id="meal-3">
-                  <img src="public/img/img.png">
-                  <div class="space">
-                    <h2>Title</h2>
-                    <p>description</p>
-                    <div class="like">
-                      <i class="fas fa-heart">600</i>
-                      <i class="fas fa-minus-square">101</i>
-                    </div>
-                  </div>
-                </div>
-                <div id="meal-3">
-                  <img src="public/img/img.png">
-                  <div class="space">
-                    <h2>Title</h2>
-                    <p>description</p>
-                    <div class="like">
-                      <i class="fas fa-heart">600</i>
-                      <i class="fas fa-minus-square">101</i>
-                    </div>
-                  </div>
-                </div>
-                <div id="meal-3">
-                  <img src="public/img/img.png">
-                  <div class="space">
-                    <h2>Title</h2>
-                    <p>description</p>
-                    <div class="like">
-                      <i class="fas fa-heart">600</i>
-                      <i class="fas fa-minus-square">101</i>
-                    </div>
-                  </div>
-                </div>
-                <div id="meal-3">
-                  <img src="public/img/img.png">
-                  <div class="space">
-                    <h2>Title</h2>
-                    <p>description</p>
-                    <div class="like">
-                      <i class="fas fa-heart">600</i>
-                      <i class="fas fa-minus-square">101</i>
-                    </div>
-                  </div>
-                </div>
+
             </section>
         </main>
     </div>
