@@ -167,7 +167,7 @@ p {
     color: #C06E0C;
 }
 
-@media only screen and (max-width: 1200px) {
+@media screen and (max-width: 1000px) {
 .base-container {
     display: flex;
     align-items: center;
@@ -179,7 +179,7 @@ p {
     display: block;
     overflow: auto;
   }
-  
+
   .meals>div {
     width: 100%;
     margin-bottom: 2em;
@@ -218,7 +218,7 @@ p {
     h2 {
         font: normal normal normal 44px/55px Helvetica Neue;
     }
-    
+
     p {
         font: normal normal normal 26px/32px Helvetica Neue;
     }
@@ -248,7 +248,4 @@ p {
         }
 
 
-
-
-  
 }
