@@ -65,7 +65,7 @@
                     ?>
                 <input name="title" type="text" placeholder="title">
                 <textarea name="preparation" rows="8" placeholder="preparation"></textarea>
-                <textarea name="list of ingredients" rows="8" placeholder="ingredients"></textarea>
+                <textarea name="ingredients" rows="8" placeholder="ingredients"></textarea>
                 <input type="file" name="file">
                 <button class="submit-button" type="submit">submit</button>
             </form>
