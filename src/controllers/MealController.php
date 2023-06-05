@@ -4,6 +4,7 @@
 
 require_once 'AppController.php';
 require_once __DIR__ .'/../models/Meal.php';
+require_once __DIR__ .'/../repository/MealRepository.php';
 
 class MealController extends AppController {
 
@@ -11,6 +12,14 @@ class MealController extends AppController {
     const SUPPORTED_TYPES = ['image/png', 'image/jpeg'];
     const UPLOAD_DIRECTORY = '/../public/uploads/';
     private $messages = [];
+    private $mealRepository;
+
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->mealRepository = new MealRepository();
+    }
 
     public function addMeal()
     {
@@ -21,7 +30,7 @@ class MealController extends AppController {
             );
 
             $meal = new Meal($_POST['title'],$_POST['preparation'], $_POST['ingredients'], $_FILES['file']['name']);
-
+            $this->mealRepository->addMeal($meal);
 
             return $this->render('meals', ['messages' => $this->message, 'meal' => $meal]);
         }
