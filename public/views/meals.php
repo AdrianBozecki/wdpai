@@ -54,6 +54,8 @@
               </div> 
             </header>
             <section class="meals">
+                <?php foreach ($meals as $meal): ?>
+
                 <div id="meal-1">
                   <img src="public/uploads/<?= $meal->getImage() ?>">
                   <div class="space">
@@ -65,7 +67,7 @@
                     </div>
                   </div>
                 </div>
-
+                <?php endforeach; ?>
             </section>
         </main>
     </div>
