@@ -8,7 +8,5 @@ class DefaultController extends AppController{
         $this->render('login');
     }
 
-    public function meals() {
-        $this->render('meals');
-    }
+
 }

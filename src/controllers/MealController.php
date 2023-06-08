@@ -21,6 +21,11 @@ class MealController extends AppController {
         $this->mealRepository = new MealRepository();
     }
 
+    public function meals() {
+        $meals = $this->mealRepository->getMeals();
+        $this->render('meals', ['meals' => $meals]);
+    }
+
     public function addMeal()
     {
         if ($this->isPost() && is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file'])) {
@@ -32,7 +37,7 @@ class MealController extends AppController {
             $meal = new Meal($_POST['title'],$_POST['preparation'], $_POST['ingredients'], $_FILES['file']['name']);
             $this->mealRepository->addMeal($meal);
 
-            return $this->render('meals', ['messages' => $this->message, 'meal' => $meal]);
+            return $this->render('meals', ['messages' => $this->message, 'meals' =>$this->mealRepository->getMeals()]);
         }
         return $this->render('add_meal', ['messages' => $this->message]);
     }

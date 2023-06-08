@@ -28,6 +28,28 @@ class MealRepository extends Repository
         );
     }
 
+    public function getMeals(): array
+    {
+        $result = [];
+
+        $stmt = $this->database->connect()->prepare('
+            SELECT * FROM public.meals
+        ');
+        $stmt->execute();
+        $meals = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($meals as $meal) {
+            $result[] = new Meal(
+                $meal['title'],
+                $meal['preparation'],
+                $meal['ingredients'],
+                $meal['image'],
+            );
+        }
+
+        return $result;
+    }
+
     public function addMeal(Meal $meal): void
     {
         $date = new DateTime();
