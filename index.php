@@ -10,5 +10,6 @@ Routing::get('meals', 'MealController');
 Routing::post('login', 'SecurityController');
 Routing::post('addMeal', 'MealController');
 Routing::post('register', 'SecurityController');
+Routing::post('search', 'MealController');
 
 Routing::run($path);

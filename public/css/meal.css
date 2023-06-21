@@ -102,7 +102,7 @@ header {
     width: 50%;
 }
 
-.search-bar>form>input{
+.search-bar>input{
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: inset 0px 3px 10px #00000029, 0px 3px 50px #00000029;
     border: 1px solid #707070;
@@ -255,7 +255,7 @@ textarea {
         font-size: 2em;
     }
 
-    .search-bar>form>input{
+    .search-bar>input{
         background: #FFFFFF 0% 0% no-repeat padding-box;
         box-shadow: inset 0px 3px 10px #00000029, 0px 3px 50px #00000029;
         border: 1px solid #707070;
