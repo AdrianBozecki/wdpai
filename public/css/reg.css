@@ -1,0 +1,113 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    background: transparent linear-gradient(180deg, #BF6A06E0 0%, #BFB57DAD 100%) 0% 0% no-repeat padding-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    font: normal normal bold 80px/100px American Typewriter;
+    color: #FFFFFF;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.logo h1 {
+    margin-top: 0;
+}
+
+.login-container {
+    width: 90%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.register {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input[type="text"],
+input[type="password"] {
+    margin: 10px 0;
+    width: 50%;
+    height: 70px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: inset 0px 3px 10px #00000029, 0px 3px 50px #00000029;
+    border: 1px solid #707070;
+    border-radius: 28px;
+    font: normal normal normal 24px/28px Helvetica Neue;
+    letter-spacing: 0px;
+    color: #707070;
+    padding: 0 20px;
+}
+
+input::placeholder {
+    text-indent: 20px;
+}
+
+button {
+    background: #40401F 0% 0% no-repeat padding-box;
+    box-shadow: inset 0px 3px 20px #B7A12729;
+    border: 1px solid #707070;
+    border-radius: 27px;
+    width: 50%;
+    height: 70px;
+    margin-top: 15px;
+    text-align: center;
+    font: normal normal normal 24px/28px Helvetica Neue;  /* Changed from 20px/24px */
+    letter-spacing: 0px;
+    color: #FFFFFF;
+}
+
+.messages {
+    color: #ff0000;
+    margin-bottom: 1rem;
+}
+
+@media only screen and (min-width: 600px) {
+    .logo {
+        font: normal normal bold 60px/80px American Typewriter;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        height: 70px;
+        font: normal normal normal 25px/29px Helvetica Neue;
+    }
+
+    button {
+        height: 70px;
+        font: normal normal normal 25px/29px Helvetica Neue;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .logo {
+        font: normal normal bold 80px/100px American Typewriter;
+        line-height: 1.5em;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        height: 130px;
+        font: normal normal normal 35px/41px Helvetica Neue;
+    }
+
+    button {
+        height: 130px;
+        font: normal normal normal 35px/41px Helvetica Neue;
+    }
+}

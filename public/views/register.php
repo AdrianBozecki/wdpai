@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="public/css/register.css">
+    <link rel="stylesheet" type="text/css" href="public/css/reg.css">
     <script type="text/javascript" src="./public/js/script.js" defer></script>
     <title>REGISTER</title>
 </head>
@@ -9,7 +9,7 @@
 <body>
 <div class="container">
     <div class="logo">
-        <img src="public/img/logo.svg">
+        <h1>MEAL FUEL</h1>
     </div>
     <div class="login-container">
         <form class="register" action="register" method="POST">
