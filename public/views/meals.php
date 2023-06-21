@@ -2,6 +2,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="public/css/meal.css">
     <script src="https://kit.fontawesome.com/8113ee2963.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./public/js/search.js" defer></script>
     <title>Projects</title>
 </head>
 <body>
@@ -44,9 +45,7 @@
                 add meal
               </div> 
               <div class="search-bar">
-                <form>
-                    <input placeholder="search meal">
-                </form>
+                <input placeholder="search">
               </div>
               <div class="settings header-button">
                 <i class="fa-solid fa-gear"></i>
@@ -73,3 +72,17 @@
     </div>
 
 </body>
+
+<template id="meal-template">
+    <div id="meal-1">
+        <img src="">
+        <div class="space">
+            <h2>title</h2>
+            <p>description</p>
+            <div class="like">
+                <i class="fas fa-heart">0</i>
+                <i class="fas fa-minus-square">0</i>
+            </div>
+        </div>
+    </div>
+</template>
