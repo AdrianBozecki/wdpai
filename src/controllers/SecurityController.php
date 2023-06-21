@@ -7,19 +7,23 @@ require_once __DIR__ .'/../models/User.php';
 require_once __DIR__ .'/../repository/UserRepository.php';
 
 class SecurityController extends AppController {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->userRepository = new UserRepository();
+    }
 
     public function login()
     {
+
         $userRepository = new UserRepository();
-
-
 
         if (!$this->isPost()) {
             return $this->render('login');
         }
 
         $email = $_POST['email'];
-        $password = $_POST['password'];
+        $password = md5($_POST['password']);
         $user = $userRepository->getUser($email);
 
         if(!$user) {
@@ -57,7 +61,6 @@ class SecurityController extends AppController {
 
         //TODO try to use better hash function
         $user = new User($email, md5($password), $name, $surname);
-        $user->setPhone($phone);
 
         $this->userRepository->addUser($user);
 

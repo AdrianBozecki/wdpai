@@ -115,16 +115,20 @@ header {
     padding: 0.3em;
     }
 
+
 section {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 2em;
     padding: 2em;
-    overflow: scroll;
+    overflow: scroll; /* Zmieniamy na 'auto' */
     background: #B5A36533 0% 0% no-repeat padding-box;
     height: 95%;
 }
 
+.meals>div{
+    height:41vh;
+}
 .meals>div>img {
     height: 70%;
     width: 100%;
@@ -132,10 +136,9 @@ section {
     border-radius: 1em 1em 0 0;
 }
 
-
 .meals>div>div {
     height: 30%;
-    
+    width: 100%;
 }
 
 h2 {
