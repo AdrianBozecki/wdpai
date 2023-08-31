@@ -67,13 +67,15 @@ class MealRepository extends Repository
     }
     public function addMeal(Meal $meal): void
     {
+        session_start();
+
         $date = new DateTime();
         $stmt = $this->database->connect()->prepare(
             'INSERT INTO public.meals (title, preparation, ingredients, created_at, id_user, image, category)
                     VALUES (?, ?, ?, ?, ?, ?, ?)'
         );
 
-        $idUser = 1;
+        $idUser = $_SESSION['user_id'];
 
         $stmt->execute([
             $meal->getTitle(),

@@ -3,6 +3,7 @@
 
 class User
 {
+    private $id;
     private $email;
     private $password;
     private $name;
@@ -10,14 +11,25 @@ class User
     private $phone;
 
 
-    public function __construct(string $email,string $password,string $name,string $lastname)
+    public function __construct(string $email,string $password,string $name,string $lastname,string $phone, ?int $id = null)
     {
         $this->email = $email;
         $this->password = $password;
         $this->name = $name;
         $this->lastname = $lastname;
+        $this->id = $id;
+        $this->phone = $phone;
     }
 
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
     public function getEmail(): string
     {
         return $this->email;
