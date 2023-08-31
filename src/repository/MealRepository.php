@@ -21,10 +21,13 @@ class MealRepository extends Repository
         }
 
         return new Meal(
-            $meal['id'],
             $meal['title'],
             $meal['preparation'],
             $meal['ingredients'],
+            $meal['image'],
+            $meal['category'],
+            $meal['like'],
+            $meal['dislike'],
         );
     }
 
@@ -45,7 +48,8 @@ class MealRepository extends Repository
                 $meal['ingredients'],
                 $meal['image'],
                 $meal['category'],
-
+                $meal['like'],
+                $meal['dislike'],
             );
         }
 
@@ -71,8 +75,8 @@ class MealRepository extends Repository
 
         $date = new DateTime();
         $stmt = $this->database->connect()->prepare(
-            'INSERT INTO public.meals (title, preparation, ingredients, created_at, id_user, image, category)
-                    VALUES (?, ?, ?, ?, ?, ?, ?)'
+            'INSERT INTO public.meals (title, preparation, ingredients, created_at, id_user, image, category, "like", dislike)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
         );
 
         $idUser = $_SESSION['user_id'];
@@ -85,10 +89,12 @@ class MealRepository extends Repository
             $idUser,
             $meal->getImage(),
             $meal->getCategory(),
+            $meal->getLike(),
+            $meal->getDislike(),
         ]);
     }
 
-    public function getProjectByTitle(string $searchString)
+    public function getMealByTitle(string $searchString)
     {
         $searchString = "%".strtolower($searchString)."%";
 

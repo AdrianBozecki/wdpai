@@ -35,8 +35,9 @@ class MealController extends AppController {
             );
 
             $meal = new Meal($_POST['title'],$_POST['preparation'], $_POST['ingredients'], $_FILES['file']['name'], $_POST['category']);
-            $this->mealRepository->addMeal($meal);
 
+            $this->mealRepository->addMeal($meal);
+            header('Location: /meals');
             return $this->render('meals', ['messages' => $this->message, 'meals' =>$this->mealRepository->getMeals()]);
         }
         return $this->render('add_meal', ['messages' => $this->message]);
@@ -51,7 +52,7 @@ class MealController extends AppController {
 
             header('Content-type:application/json');
             http_response_code(200);
-            echo json_encode($this->mealRepository->getProjectByTitle($decoded['search']));
+            echo json_encode($this->mealRepository->getMealByTitle($decoded['search']));
         }
     }
 

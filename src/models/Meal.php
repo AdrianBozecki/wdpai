@@ -8,15 +8,42 @@ class Meal
     private $ingredients;
     private $image;
     private $category;
+    private $like;
+    private $dislike;
 
 
-    public function __construct($title, $preparation, $ingredients, $image, $category)
+
+    public function __construct($title, $preparation, $ingredients, $image, $category, $like=0, $dislike=0)
     {
         $this->title = $title;
         $this->preparation = $preparation;
         $this->ingredients = $ingredients;
         $this->image = $image;
         $this->category = $category;
+        $this->like = $like;
+        $this->dislike = $dislike;
+    }
+
+    public function getLike(): int
+    {
+        return $this->like;
+    }
+
+
+    public function setLike(int $like): void
+    {
+        $this->like = $like;
+    }
+
+    public function getDislike(): int
+    {
+        return $this->dislike;
+    }
+
+
+    public function setDislike(int $dislike): void
+    {
+        $this->dislike = $dislike;
     }
 
     public function getCategory(): string
