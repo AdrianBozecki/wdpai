@@ -96,6 +96,14 @@ header {
     padding: 0.3em;
 }
 
+.header-button a {
+    margin-bottom: 10px;
+    color: #707070;
+    text-align: center;
+    justify-content: center;
+}
+
+
 
 .search-bar{
 

@@ -14,7 +14,7 @@
           <ul>
             <li>
               <i class="fa-solid fa-plate-wheat"></i>
-              <a href="#" class="button">all</a>
+              <a href="/meals" class="button">all</a>
             </li>
             <li>
               <i class="fa-solid fa-bacon"></i>
@@ -41,15 +41,19 @@
         <main>
             <header>
               <div class="add-meal header-button">
-                <i class="fa-solid fa-plus"></i>
-                add meal
+                  <a href="/addMeal">
+                      <i class="fa-solid fa-plus"></i>
+                      add meal
+                  </a>
               </div> 
               <div class="search-bar">
                 <input placeholder="search">
               </div>
               <div class="settings header-button">
                 <i class="fa-solid fa-gear"></i>
-                settings
+                  <a href="/login">
+                  logout
+                  </a>
               </div> 
             </header>
             <section class="meals">
@@ -59,10 +63,9 @@
                   <img src="public/uploads/<?= $meal->getImage() ?>">
                   <div class="space">
                     <h2><?= $meal->getTitle() ?></h2>
-                    <p>description</p>
                     <div class="like">
-                      <i class="fas fa-heart">600</i>
-                      <i class="fas fa-minus-square">101</i>
+                      <i class="fas fa-heart">0</i>
+                      <i class="fas fa-minus-square">0</i>
                     </div>
                   </div>
                 </div>
@@ -78,7 +81,6 @@
         <img src="">
         <div class="space">
             <h2>title</h2>
-            <p>description</p>
             <div class="like">
                 <i class="fas fa-heart">0</i>
                 <i class="fas fa-minus-square">0</i>

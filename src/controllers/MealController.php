@@ -34,7 +34,7 @@ class MealController extends AppController {
                 dirname(__DIR__).self::UPLOAD_DIRECTORY.$_FILES['file']['name']
             );
 
-            $meal = new Meal($_POST['title'],$_POST['preparation'], $_POST['ingredients'], $_FILES['file']['name']);
+            $meal = new Meal($_POST['title'],$_POST['preparation'], $_POST['ingredients'], $_FILES['file']['name'], $_POST['category']);
             $this->mealRepository->addMeal($meal);
 
             return $this->render('meals', ['messages' => $this->message, 'meals' =>$this->mealRepository->getMeals()]);
@@ -52,6 +52,18 @@ class MealController extends AppController {
             header('Content-type:application/json');
             http_response_code(200);
             echo json_encode($this->mealRepository->getProjectByTitle($decoded['search']));
+        }
+    }
+
+    public function getMealsByCategory() {
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+        if ($contentType === "application/json") {
+            $category = $_GET['category'];
+
+            header('Content-type:application/json');
+            http_response_code(200);
+            echo json_encode($this->mealRepository->getMealsByCategory($category));
         }
     }
 

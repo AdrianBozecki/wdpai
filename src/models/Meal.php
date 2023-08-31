@@ -7,16 +7,28 @@ class Meal
     private $preparation;
     private $ingredients;
     private $image;
+    private $category;
 
 
-    public function __construct($title, $preparation, $ingredients, $image)
+    public function __construct($title, $preparation, $ingredients, $image, $category)
     {
         $this->title = $title;
         $this->preparation = $preparation;
         $this->ingredients = $ingredients;
         $this->image = $image;
+        $this->category = $category;
     }
 
+    public function getCategory(): string
+    {
+        return $this->category;
+    }
+
+
+    public function setCategory(string $category): void
+    {
+        $this->category = $category;
+    }
 
     public function getTitle(): string
     {

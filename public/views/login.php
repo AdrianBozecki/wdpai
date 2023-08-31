@@ -16,7 +16,7 @@
                         <?php
                         if(isset($messages)){
                             foreach($messages as $message) {
-                                echo $message;
+                                echo "<span class='error-message'>" . $message . "</span>";
                             }
                         }
                         ?>
@@ -26,7 +26,7 @@
                 </div>
                 <div class="buttons">
                     <button type="submit">sign in</button>
-                    <button>sign up</button>
+                    <a href="/register"><button type="button">sign up</button></a>
                 </div>
                 
             </form>

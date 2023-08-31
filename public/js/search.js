@@ -26,9 +26,30 @@ search.addEventListener("keyup", function(event) {
 
 });
 
+
+document.querySelectorAll('.button').forEach(button => {
+    button.addEventListener('click', function(event) {
+        event.preventDefault();
+
+        const category = this.innerText.toLowerCase();
+
+        fetch(`/getMealsByCategory?category=${category}`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+            })
+            .then(response => response.json())
+            .then(function (meals) {
+            mealContainer.innerHTML = "";
+            loadMeals(meals)
+        })
+    });
+});
+
 function loadMeals(meals) {
     meals.forEach(meal => {
-        console.log(meal);
         createMeal(meal);
     })
 }
@@ -43,8 +64,6 @@ function createMeal(meal) {
 
     const title = clone.querySelector("h2");
     title.innerHTML = meal.title;
-    const description = clone.querySelector("p");
-    description.innerHTML = meal.ingredients;
     const like = clone.querySelector(".fa-heart");
     like.innerText = meal.like;
     const dislike = clone.querySelector(".fa-minus-square");
@@ -52,3 +71,4 @@ function createMeal(meal) {
 
     mealContainer.appendChild(clone);
 }
+
