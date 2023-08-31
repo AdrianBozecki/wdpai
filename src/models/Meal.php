@@ -10,18 +10,29 @@ class Meal
     private $category;
     private $like;
     private $dislike;
+    private string $author;
 
 
-
-    public function __construct($title, $preparation, $ingredients, $image, $category, $like=0, $dislike=0)
+    public function __construct($title, $preparation, $ingredients, $image, $category, $author="", $like=0, $dislike=0)
     {
         $this->title = $title;
         $this->preparation = $preparation;
         $this->ingredients = $ingredients;
         $this->image = $image;
         $this->category = $category;
+        $this->author = $author;
         $this->like = $like;
         $this->dislike = $dislike;
+    }
+    public function getAuthor(): string
+    {
+        return $this->author;
+    }
+
+
+    public function setAuthor(string $author): void
+    {
+        $this->author = $author;
     }
 
     public function getLike(): int

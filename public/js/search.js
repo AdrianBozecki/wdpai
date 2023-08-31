@@ -42,6 +42,7 @@ document.querySelectorAll('.button').forEach(button => {
             })
             .then(response => response.json())
             .then(function (meals) {
+            meals.sort((a, b) => b.id - a.id);
             mealContainer.innerHTML = "";
             loadMeals(meals)
         })
@@ -69,6 +70,8 @@ function createMeal(meal) {
     const dislike = clone.querySelector(".fa-minus-square");
     dislike.innerText = meal.dislike;
 
+    const author = clone.querySelector(".author");
+    author.innerText = `author: ${meal.author}`;
+
     mealContainer.appendChild(clone);
 }
-

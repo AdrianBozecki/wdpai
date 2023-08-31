@@ -66,8 +66,8 @@
                       <div class="like">
                           <i class="fas fa-heart"><?= $meal->getLike() ?></i>
                           <i class="fas fa-minus-square"><?= $meal->getDislike() ?></i>
-                          <i class="author">author : </i>
                       </div>
+                      <i class="author">author: <?= $meal->getAuthor() ?></i>
                   </div>
                 </div>
                 <?php endforeach; ?>
@@ -86,6 +86,7 @@
                 <i class="fas fa-heart">0</i>
                 <i class="fas fa-minus-square">0</i>
             </div>
+            <i class="author">author: </i>
         </div>
     </div>
 </template>

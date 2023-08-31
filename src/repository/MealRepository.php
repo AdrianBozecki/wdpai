@@ -36,8 +36,12 @@ class MealRepository extends Repository
         $result = [];
 
         $stmt = $this->database->connect()->prepare('
-            SELECT * FROM public.meals
-        ');
+        SELECT meals.*, user_details.name AS author 
+        FROM public.meals
+        JOIN users ON meals.id_user = users.id
+        JOIN user_details ON users.id_user_details = user_details.id
+        ORDER BY meals.id DESC;;
+    ');
         $stmt->execute();
         $meals = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -48,6 +52,7 @@ class MealRepository extends Repository
                 $meal['ingredients'],
                 $meal['image'],
                 $meal['category'],
+                $meal['author'],
                 $meal['like'],
                 $meal['dislike'],
             );
@@ -58,11 +63,22 @@ class MealRepository extends Repository
 
     public function getMealsByCategory($category) {
         if($category == 'all') {
-            $stmt = $this->database->connect()->prepare("SELECT * FROM public.meals");
+            $stmt = $this->database->connect()->prepare('
+        SELECT meals.*, user_details.name AS author 
+        FROM public.meals
+        JOIN users ON meals.id_user = users.id
+        JOIN user_details ON users.id_user_details = user_details.id
+        ORDER BY meals.id DESC
+        ');
         } else {
-            $stmt = $this->database->connect()->prepare(
-                "SELECT * FROM public.meals WHERE category = :category"
-            );
+            $stmt = $this->database->connect()->prepare('
+        SELECT meals.*, user_details.name AS author 
+        FROM public.meals
+        JOIN users ON meals.id_user = users.id
+        JOIN user_details ON users.id_user_details = user_details.id
+        WHERE category = :category
+        ORDER BY meals.id DESC
+        ');
             $stmt->bindParam(":category", $category, PDO::PARAM_STR);
         }
         $stmt->execute();

@@ -196,6 +196,11 @@ section.meal-form {
 textarea {
 }
 
+.author {
+    color: rgb(50, 50, 50);
+    font-size: 22px;
+    font-family: "Times New Roman", Times, serif;
+}
 
 
 
