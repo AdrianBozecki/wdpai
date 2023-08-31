@@ -96,6 +96,7 @@ class MealRepository extends Repository
         );
 
         $idUser = $_SESSION['user_id'];
+        $imagePath = $meal->getImage() ? $meal->getImage() : 'public/uploads/default.png';
 
         $stmt->execute([
             $meal->getTitle(),
@@ -103,7 +104,7 @@ class MealRepository extends Repository
             $meal->getIngredients(),
             $date->format('Y-m-d'),
             $idUser,
-            $meal->getImage(),
+            $imagePath,
             $meal->getCategory(),
             $meal->getLike(),
             $meal->getDislike(),

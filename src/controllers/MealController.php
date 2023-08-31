@@ -26,22 +26,27 @@ class MealController extends AppController {
         $this->render('meals', ['meals' => $meals]);
     }
 
-    public function addMeal()
-    {
-        if ($this->isPost() && is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file'])) {
-            move_uploaded_file(
-                $_FILES['file']['tmp_name'],
-                dirname(__DIR__).self::UPLOAD_DIRECTORY.$_FILES['file']['name']
-            );
-
-            $meal = new Meal($_POST['title'],$_POST['preparation'], $_POST['ingredients'], $_FILES['file']['name'], $_POST['category']);
-
-            $this->mealRepository->addMeal($meal);
-            header('Location: /meals');
-            return $this->render('meals', ['messages' => $this->message, 'meals' =>$this->mealRepository->getMeals()]);
+    public function addMeal() {
+        if ($this->isPost()) {
+            // Sprawdzenie, czy plik został przesłany i jest poprawny
+            if (is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file'])) {
+                move_uploaded_file(
+                    $_FILES['file']['tmp_name'],
+                    dirname(__DIR__) . self::UPLOAD_DIRECTORY . $_FILES['file']['name']
+                );
+                $meal = new Meal($_POST['title'], $_POST['preparation'], $_POST['ingredients'], $_FILES['file']['name'], $_POST['category']);
+                $this->mealRepository->addMeal($meal);
+                header('Location: /meals');
+                return $this->render('meals', ['messages' => $this->message, 'meals' => $this->mealRepository->getMeals()]);
+            } else {
+                // Dodanie wiadomości o błędzie do tablicy
+                $this->message[] = "Musisz podać zdjęcie";
+                return $this->render('add_meal', ['messages' => $this->message]);
+            }
         }
         return $this->render('add_meal', ['messages' => $this->message]);
     }
+
 
     public function search() {
         $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';

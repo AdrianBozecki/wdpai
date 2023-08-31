@@ -52,7 +52,7 @@
               <div class="settings header-button">
                 <i class="fa-solid fa-gear"></i>
                   <a href="/login">
-                  logout
+                   logout
                   </a>
               </div> 
             </header>
