@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <link rel="stylesheet" type="text/css" href="public/css/meal.css">
+    <link rel="stylesheet" type="text/css" href="public/css/add_meal.css">
     <script src="https://kit.fontawesome.com/8113ee2963.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="./public/js/search.js" defer></script>
     <title>Projects</title>
@@ -34,6 +34,7 @@
                 <textarea name="ingredients" rows="8" placeholder="ingredients"></textarea>
                 <input type="file" name="file">
                 <div class="dropdown">
+                    <i>Choose Category</i>
                     <select id="category" name="category" onchange="changeCategory()">
                         <option value="all">All</option>
                         <option value="breakfast">Breakfast</option>

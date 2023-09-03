@@ -93,16 +93,19 @@ header {
     color: #707070;
     text-align: center;
     width: 15%;
-    padding: 0.3em;
 }
 
 .header-button a {
-    margin-bottom: 10px;
     color: #707070;
     text-align: center;
     justify-content: center;
+    align-items: center;
 }
 
+.header-button a, .search-bar > input {
+    margin: auto;
+    height: 50px;
+}
 
 
 .search-bar{
