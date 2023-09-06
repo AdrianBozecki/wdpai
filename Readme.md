@@ -26,13 +26,13 @@ MealFuel to aplikacja webowa dedykowana do przeglądania i udostępniania przepi
     cd MealFuel
     ```
 
-3. Zainstaluj zależności (przykładowo za pomocą composer):
+3. Zainstaluj zależności:
 
     ```bash
     docker-compose build
     ```
 
-4. Uruchom projekt (np. na wbudowanym serwerze PHP):
+4. Uruchom projekt:
 
     ```bash
     docker-compose up
