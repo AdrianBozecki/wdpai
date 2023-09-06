@@ -100,7 +100,7 @@ class MealController extends AppController {
                 echo json_encode(['message' => 'Meal not found']);
                 return;
             }
-            error_log(print_r($mealDetails, true));  // Dodanie logu
+
             header('Content-type:application/json');
             $mealArray = [
                 'title' => $mealDetails->getTitle(),
@@ -108,7 +108,8 @@ class MealController extends AppController {
                 'ingredients' => $mealDetails->getIngredients(),
                 'category' => $mealDetails->getCategory(),
                 'like'=> $mealDetails->getLike(),
-                'dislike'=> $mealDetails->getDislike()
+                'dislike'=> $mealDetails->getDislike(),
+                'image' => $mealDetails->getImage(),
             ];
 
             echo json_encode($mealArray);

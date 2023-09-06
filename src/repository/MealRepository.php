@@ -39,7 +39,7 @@ class MealRepository extends Repository
         FROM public.meals
         JOIN users ON meals.id_user = users.id
         JOIN user_details ON users.id_user_details = user_details.id
-        ORDER BY meals.id DESC;;
+        ORDER BY meals.id DESC;
     ');
         $stmt->execute();
         $meals = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -116,7 +116,11 @@ class MealRepository extends Repository
         $searchString = "%".strtolower($searchString)."%";
 
         $stmt = $this->database->connect()->prepare(
-          "SELECT * FROM public.meals WHERE LOWER(title) LIKE :search"
+            'SELECT meals.*, user_details.name AS author 
+        FROM public.meals
+        JOIN users ON meals.id_user = users.id
+        JOIN user_details ON users.id_user_details = user_details.id
+        WHERE LOWER(meals.title) LIKE :search'
         );
         $stmt->bindParam(":search", $searchString, PDO::PARAM_STR);
         $stmt->execute();

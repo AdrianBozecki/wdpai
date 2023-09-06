@@ -58,7 +58,6 @@
             </header>
             <section class="meals">
                 <?php foreach ($meals as $meal): ?>
-
                 <div id="meal-<?= $meal->getId() ?>" class="meal">
                   <img src="public/uploads/<?= $meal->getImage() ?>">
                   <div class="space">
@@ -75,12 +74,11 @@
             <div id="myModal" class="modal">
                 <div class="modal-content">
                     <span class="close">&times;</span>
-                    <h2>Detale Posiłku</h2>
                     <div id="modal-body">
-                        <!-- Detale posiłku będą tutaj -->
                     </div>
                 </div>
             </div>
+
         </main>
     </div>
 

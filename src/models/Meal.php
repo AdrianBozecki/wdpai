@@ -15,7 +15,7 @@ class Meal
     private $id;
 
 
-    public function __construct($title, $preparation, $ingredients, $image, $category, $author="", $like=0, $dislike=0, ?int $id = null)
+    public function __construct($title, $preparation, $ingredients, $image, $category, $author="dupa", $like=0, $dislike=0, ?int $id = null)
     {
         $this->title = $title;
         $this->preparation = $preparation;

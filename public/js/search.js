@@ -20,6 +20,7 @@ search.addEventListener("keyup", function(event) {
            return response.json();
        }).then(function (meals) {
            mealContainer.innerHTML = "";
+           meals.sort((a, b) => b.id - a.id);
            loadMeals(meals)
        })
    }
@@ -69,64 +70,59 @@ function createMeal(meal) {
     like.innerText = meal.like;
     const dislike = clone.querySelector(".fa-minus-square");
     dislike.innerText = meal.dislike;
-
     const author = clone.querySelector(".author");
+    console.log(meal)
     author.innerText = `author: ${meal.author}`;
 
     mealContainer.appendChild(clone);
 }
 
-// Oczekuj na załadowanie całej strony
 document.addEventListener("DOMContentLoaded", function() {
 
-    // Pobierz wszystkie elementy z klasą 'meal' i dodaj do nich nasłuchiwanie na zdarzenie 'click'
     document.querySelectorAll('.meal').forEach(function(mealElement) {
         mealElement.addEventListener('click', function(event) {
 
-            // Pobranie ID elementu, który został kliknięty
             const clickedElementId = event.currentTarget.id;
 
-            // Pobranie numerycznego ID posiłku z pełnego ID elementu
             const mealId = clickedElementId.split('-')[1];
 
-            // Logowanie ID do konsoli
-            console.log('Kliknięto w posiłek z ID:', mealId);
-
-            // Tutaj możesz później umieścić kod, który będzie pobierał szczegóły posiłku
         });
     });
 
 });
 
-// Pobierz modal
+
 var modal = document.getElementById("myModal");
 
-// Pobierz element, który zamyka modal
+
 var span = document.getElementsByClassName("close")[0];
 
-// Kiedy użytkownik kliknie na element (span), zamknij modal
+
 span.onclick = function() {
     modal.style.display = "none";
 }
 
-// Kiedy użytkownik kliknie gdziekolwiek poza modalem, zamknij go
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
 }
 
-// Funkcja do otwarcia modala i wyświetlenia danych
 function openModalWithData(data) {
-    // Wprowadź dane do modala
     var modalBody = document.getElementById("modal-body");
     modalBody.innerHTML = `
-    <p>Tytuł: ${data.title}</p>
-    <p>Przygotowanie: ${data.preparation}</p>
-    <p>Składniki: ${data.ingredients}</p>
+    <div style="display: flex;">
+        <img src="public/uploads/${data.image}" alt="${data.title}" style="width: 100%; max-width: 400px; margin-right: 20px">
+        <div>
+            <h2>Meal Details</h2>
+            <p>name: ${data.title}</p>
+            <p>preparation: ${data.preparation}</p>
+            <p>ingredients: ${data.ingredients}</p>
+        </div>
+    </div>
+
   `;
 
-    // Wyświetl modal
     modal.style.display = "block";
 }
 
@@ -140,7 +136,7 @@ function fetchMealDetails(mealId) {
                 "Content-Type": "application/json"
             },
         })
-        .then(response => response.json())  // Odczytaj surową odpowiedź jako tekst
+        .then(response => response.json())
         .then(data => {
             openModalWithData(data);
         })
