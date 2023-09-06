@@ -15,7 +15,8 @@ class SecurityController extends AppController {
 
     public function login()
     {
-
+        session_start();  // rozpoczęcie sesji
+        session_regenerate_id(true); // regeneracja ID sesji
         $userRepository = new UserRepository();
 
         if (!$this->isPost()) {
@@ -27,7 +28,7 @@ class SecurityController extends AppController {
         $user = $userRepository->getUser($email);
 
         if(!$user) {
-            return $this->render('login', ['messages' => ['User not exist!']]);
+            return $this->render('login', ['messages' => ['User not exists!']]);
         }
 
         if ($user->getEmail() !== $email) {
@@ -38,8 +39,11 @@ class SecurityController extends AppController {
             return $this->render('login', ['messages' => ['Wrong password!']]);
         }
 
+        $_SESSION['user_id'] = $user->getId();
+
         $url = "http://$_SERVER[HTTP_HOST]";
         header("Location: {$url}/meals");
+        exit();  // Zaleca się dodanie exit() po przekierowaniu
     }
 
     public function register()
@@ -59,8 +63,7 @@ class SecurityController extends AppController {
             return $this->render('register', ['messages' => ['Please provide proper password']]);
         }
 
-        //TODO try to use better hash function
-        $user = new User($email, md5($password), $name, $surname);
+        $user = new User($email, md5($password), $name, $surname, $phone);
 
         $this->userRepository->addUser($user);
 

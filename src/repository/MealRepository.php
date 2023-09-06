@@ -11,20 +11,22 @@ class MealRepository extends Repository
         $stmt = $this->database->connect()->prepare('
             SELECT * FROM public.meals WHERE id = :id
         ');
-        $stmt->bindParam(":email", $id, PDO::PARAM_INT);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
         $stmt->execute();
-
         $meal = $stmt->fetch(PDO::FETCH_ASSOC);
+
 
         if (!$meal) {
             return null;
         }
-
         return new Meal(
-            $meal['id'],
             $meal['title'],
             $meal['preparation'],
             $meal['ingredients'],
+            $meal['image'],
+            $meal['category'],
+            $meal['like'],
+            $meal['dislike'],
         );
     }
 
@@ -33,8 +35,12 @@ class MealRepository extends Repository
         $result = [];
 
         $stmt = $this->database->connect()->prepare('
-            SELECT * FROM public.meals
-        ');
+        SELECT meals.*, user_details.name AS author 
+        FROM public.meals
+        JOIN users ON meals.id_user = users.id
+        JOIN user_details ON users.id_user_details = user_details.id
+        ORDER BY meals.id DESC;
+    ');
         $stmt->execute();
         $meals = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -44,21 +50,53 @@ class MealRepository extends Repository
                 $meal['preparation'],
                 $meal['ingredients'],
                 $meal['image'],
+                $meal['category'],
+                $meal['author'],
+                $meal['like'],
+                $meal['dislike'],
+                $meal['id'],
             );
         }
 
         return $result;
     }
 
+    public function getMealsByCategory($category) {
+        if($category == 'all') {
+            $stmt = $this->database->connect()->prepare('
+        SELECT meals.*, user_details.name AS author 
+        FROM public.meals
+        JOIN users ON meals.id_user = users.id
+        JOIN user_details ON users.id_user_details = user_details.id
+        ORDER BY meals.id DESC
+        ');
+        } else {
+            $stmt = $this->database->connect()->prepare('
+        SELECT meals.*, user_details.name AS author 
+        FROM public.meals
+        JOIN users ON meals.id_user = users.id
+        JOIN user_details ON users.id_user_details = user_details.id
+        WHERE category = :category
+        ORDER BY meals.id DESC
+        ');
+            $stmt->bindParam(":category", $category, PDO::PARAM_STR);
+        }
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     public function addMeal(Meal $meal): void
     {
+        session_start();
+
         $date = new DateTime();
         $stmt = $this->database->connect()->prepare(
-            'INSERT INTO public.meals (title, preparation, ingredients, created_at, id_user, image)
-                    VALUES (?, ?, ?, ?, ?, ?)'
+            'INSERT INTO public.meals (title, preparation, ingredients, created_at, id_user, image, category, "like", dislike)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
         );
 
-        $idUser = 1;
+        $idUser = $_SESSION['user_id'];
+        $imagePath = $meal->getImage() ? $meal->getImage() : 'public/uploads/default.png';
 
         $stmt->execute([
             $meal->getTitle(),
@@ -66,16 +104,23 @@ class MealRepository extends Repository
             $meal->getIngredients(),
             $date->format('Y-m-d'),
             $idUser,
-            $meal->getImage(),
+            $imagePath,
+            $meal->getCategory(),
+            $meal->getLike(),
+            $meal->getDislike(),
         ]);
     }
 
-    public function getProjectByTitle(string $searchString)
+    public function getMealByTitle(string $searchString)
     {
         $searchString = "%".strtolower($searchString)."%";
 
         $stmt = $this->database->connect()->prepare(
-          "SELECT * FROM public.meals WHERE LOWER(title) LIKE :search"
+            'SELECT meals.*, user_details.name AS author 
+        FROM public.meals
+        JOIN users ON meals.id_user = users.id
+        JOIN user_details ON users.id_user_details = user_details.id
+        WHERE LOWER(meals.title) LIKE :search'
         );
         $stmt->bindParam(":search", $searchString, PDO::PARAM_STR);
         $stmt->execute();

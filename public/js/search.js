@@ -20,15 +20,38 @@ search.addEventListener("keyup", function(event) {
            return response.json();
        }).then(function (meals) {
            mealContainer.innerHTML = "";
+           meals.sort((a, b) => b.id - a.id);
            loadMeals(meals)
        })
    }
 
 });
 
+
+document.querySelectorAll('.button').forEach(button => {
+    button.addEventListener('click', function(event) {
+        event.preventDefault();
+
+        const category = this.innerText.toLowerCase();
+
+        fetch(`/getMealsByCategory?category=${category}`,
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+            })
+            .then(response => response.json())
+            .then(function (meals) {
+            meals.sort((a, b) => b.id - a.id);
+            mealContainer.innerHTML = "";
+            loadMeals(meals)
+        })
+    });
+});
+
 function loadMeals(meals) {
     meals.forEach(meal => {
-        console.log(meal);
         createMeal(meal);
     })
 }
@@ -43,12 +66,93 @@ function createMeal(meal) {
 
     const title = clone.querySelector("h2");
     title.innerHTML = meal.title;
-    const description = clone.querySelector("p");
-    description.innerHTML = meal.ingredients;
     const like = clone.querySelector(".fa-heart");
     like.innerText = meal.like;
     const dislike = clone.querySelector(".fa-minus-square");
     dislike.innerText = meal.dislike;
+    const author = clone.querySelector(".author");
+    console.log(meal)
+    author.innerText = `author: ${meal.author}`;
 
     mealContainer.appendChild(clone);
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    document.querySelectorAll('.meal').forEach(function(mealElement) {
+        mealElement.addEventListener('click', function(event) {
+
+            const clickedElementId = event.currentTarget.id;
+
+            const mealId = clickedElementId.split('-')[1];
+
+        });
+    });
+
+});
+
+
+var modal = document.getElementById("myModal");
+
+
+var span = document.getElementsByClassName("close")[0];
+
+
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+function openModalWithData(data) {
+    var modalBody = document.getElementById("modal-body");
+    modalBody.innerHTML = `
+    <div style="display: flex;">
+        <img src="public/uploads/${data.image}" alt="${data.title}" style="width: 100%; max-width: 400px; margin-right: 20px">
+        <div>
+            <h2>Meal Details</h2>
+            <p>name: ${data.title}</p>
+            <p>preparation: ${data.preparation}</p>
+            <p>ingredients: ${data.ingredients}</p>
+        </div>
+    </div>
+
+  `;
+
+    modal.style.display = "block";
+}
+
+function fetchMealDetails(mealId) {
+    const url = `getMealDetails?id=${mealId}`;
+
+    fetch(url,
+        {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            openModalWithData(data);
+        })
+        .catch(error => {
+            console.error('Wystąpił błąd:', error);
+        });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll('.meal').forEach(function(mealElement) {
+        mealElement.addEventListener('click', function(event) {
+            const clickedElementId = event.currentTarget.id;
+            const mealId = clickedElementId.split('-')[1];
+
+            fetchMealDetails(mealId);
+        });
+    });
+});
+

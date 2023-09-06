@@ -7,16 +7,74 @@ class Meal
     private $preparation;
     private $ingredients;
     private $image;
+    private $category;
+    private $like;
+    private $dislike;
+    private string $author;
+
+    private $id;
 
 
-    public function __construct($title, $preparation, $ingredients, $image)
+    public function __construct($title, $preparation, $ingredients, $image, $category, $author="dupa", $like=0, $dislike=0, ?int $id = null)
     {
         $this->title = $title;
         $this->preparation = $preparation;
         $this->ingredients = $ingredients;
         $this->image = $image;
+        $this->category = $category;
+        $this->author = $author;
+        $this->like = $like;
+        $this->dislike = $dislike;
+        $this->id = $id;
     }
 
+    public function getId(): int {
+        return $this->id;
+    }
+
+    public function getAuthor(): string
+    {
+        return $this->author;
+    }
+
+
+    public function setAuthor(string $author): void
+    {
+        $this->author = $author;
+    }
+
+    public function getLike(): int
+    {
+        return $this->like;
+    }
+
+
+    public function setLike(int $like): void
+    {
+        $this->like = $like;
+    }
+
+    public function getDislike(): int
+    {
+        return $this->dislike;
+    }
+
+
+    public function setDislike(int $dislike): void
+    {
+        $this->dislike = $dislike;
+    }
+
+    public function getCategory(): string
+    {
+        return $this->category;
+    }
+
+
+    public function setCategory(string $category): void
+    {
+        $this->category = $category;
+    }
 
     public function getTitle(): string
     {

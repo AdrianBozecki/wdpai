@@ -26,21 +26,27 @@ class MealController extends AppController {
         $this->render('meals', ['meals' => $meals]);
     }
 
-    public function addMeal()
-    {
-        if ($this->isPost() && is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file'])) {
-            move_uploaded_file(
-                $_FILES['file']['tmp_name'],
-                dirname(__DIR__).self::UPLOAD_DIRECTORY.$_FILES['file']['name']
-            );
-
-            $meal = new Meal($_POST['title'],$_POST['preparation'], $_POST['ingredients'], $_FILES['file']['name']);
-            $this->mealRepository->addMeal($meal);
-
-            return $this->render('meals', ['messages' => $this->message, 'meals' =>$this->mealRepository->getMeals()]);
+    public function addMeal() {
+        if ($this->isPost()) {
+            // Sprawdzenie, czy plik został przesłany i jest poprawny
+            if (is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file'])) {
+                move_uploaded_file(
+                    $_FILES['file']['tmp_name'],
+                    dirname(__DIR__) . self::UPLOAD_DIRECTORY . $_FILES['file']['name']
+                );
+                $meal = new Meal($_POST['title'], $_POST['preparation'], $_POST['ingredients'], $_FILES['file']['name'], $_POST['category']);
+                $this->mealRepository->addMeal($meal);
+                header('Location: /meals');
+                return $this->render('meals', ['messages' => $this->message, 'meals' => $this->mealRepository->getMeals()]);
+            } else {
+                // Dodanie wiadomości o błędzie do tablicy
+                $this->message[] = "Musisz podać zdjęcie";
+                return $this->render('add_meal', ['messages' => $this->message]);
+            }
         }
         return $this->render('add_meal', ['messages' => $this->message]);
     }
+
 
     public function search() {
         $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
@@ -51,7 +57,19 @@ class MealController extends AppController {
 
             header('Content-type:application/json');
             http_response_code(200);
-            echo json_encode($this->mealRepository->getProjectByTitle($decoded['search']));
+            echo json_encode($this->mealRepository->getMealByTitle($decoded['search']));
+        }
+    }
+
+    public function getMealsByCategory() {
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+        if ($contentType === "application/json") {
+            $category = $_GET['category'];
+
+            header('Content-type:application/json');
+            http_response_code(200);
+            echo json_encode($this->mealRepository->getMealsByCategory($category));
         }
     }
 
@@ -68,6 +86,36 @@ class MealController extends AppController {
         }
         return true;
     }
+
+    public function getMealDetails() {
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+        if ($contentType === "application/json") {
+            $id = $_GET['id'];
+
+            $mealDetails = $this->mealRepository->getMeal($id);
+
+            if ($mealDetails === null) {
+                http_response_code(404);
+                echo json_encode(['message' => 'Meal not found']);
+                return;
+            }
+
+            header('Content-type:application/json');
+            $mealArray = [
+                'title' => $mealDetails->getTitle(),
+                'preparation' => $mealDetails->getPreparation(),
+                'ingredients' => $mealDetails->getIngredients(),
+                'category' => $mealDetails->getCategory(),
+                'like'=> $mealDetails->getLike(),
+                'dislike'=> $mealDetails->getDislike(),
+                'image' => $mealDetails->getImage(),
+            ];
+
+            echo json_encode($mealArray);
+        }
+    }
+
 
 
 }

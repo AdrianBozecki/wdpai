@@ -1,0 +1,261 @@
+
+.logo {
+    font: normal normal bold 40px/60px American Typewriter;
+    color: #ffffff;
+    margin-top: 0;
+    text-align: center;
+}
+
+.base-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+}
+
+nav {
+    width: 20vw;
+    height: 100vh;
+    background: transparent linear-gradient(180deg, #BF6A06E0 0%, #BFB57DAD 100%) 0% 0% no-repeat padding-box;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+
+a {
+    text-decoration: none;
+    display: inline-block;
+    line-height: 2em;
+}
+
+li {
+    display: flex;
+    align-items: center;
+}
+
+li i {
+    font-size: 2em;
+
+}
+
+ul {
+    list-style-type: none;
+}
+
+.button {
+    display: inline-block;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: inset 0px 3px 10px #00000029, 0px 3px 50px #00000029;
+    border: 1px solid #707070;
+    border-radius: 28px;
+    width: 60%; /* Dowolna szerokość guzika */
+    text-align: center;
+    padding: 10px;
+    line-height: 20px;
+    margin: 20px;
+    font-size: 1.5em;
+    text-align: center;
+    font: normal normal normal 26px/32px Helvetica Neue;
+    color: #707070;
+    flex: 1;
+    letter-spacing: 0.7px;
+}
+
+
+main {
+    width: 80vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2em;
+    padding: 2em;
+    overflow: scroll; /* Zmieniamy na 'auto' */
+    background: #B5A36533 0% 0% no-repeat padding-box;
+    height: 95%;
+}
+
+
+section.meal-form {
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100vh;
+}
+
+.meal-form > form {
+    display: flex;
+    flex-direction: column;
+}
+
+.message-error {
+    color: red;
+    background-color: #f2dede;
+    border: 1px solid #ebccd1;
+    border-radius: 4px;
+    padding: 15px;
+    margin: 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Stylizacja dla sekcji formularza */
+.meal-form {
+    background-color: #ffffff; /* Tło białe dla czytelności */
+    border-radius: 10px; /* Zaokrąglone rogi */
+    padding: 20px; /* Wewnętrzne marginesy */
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1); /* Cień */
+}
+
+/* Stylizacja dla elementów h1 wewnątrz sekcji formularza */
+.meal-form h1 {
+    font-size: 2em; /* Rozmiar czcionki */
+    color: #333; /* Kolor tekstu */
+}
+/* Style dla inputów i textarea w .meal-form */
+.meal-form input[type="text"],
+.meal-form textarea,
+.meal-form input[type="file"] {
+    margin: 10px 0;
+    width: 90%;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: inset 0px 3px 10px #00000029, 0px 3px 50px #00000029;
+    border: 1px solid #707070;
+    border-radius: 28px;
+    font: normal normal normal 24px/28px Helvetica Neue;
+    letter-spacing: 0px;
+    color: #707070;
+    padding: 10px 20px;
+}
+.meal-form textarea {
+    height: 20%;
+}
+
+/* Stylizacja dla przycisku submit w .meal-form */
+.meal-form button.submit-button {
+    background: #40401F 0% 0% no-repeat padding-box;
+    box-shadow: inset 0px 3px 20px #B7A12729;
+    border: 1px solid #707070;
+    border-radius: 27px;
+    width: 50%;
+    height: 70px;
+    margin-top: 15px;
+    text-align: center;
+    font: normal normal normal 24px/28px Helvetica Neue;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+}
+
+.submit-button:hover {
+    background-color: #45a049; /* Zmiana koloru tła po najechaniu */
+}
+
+/* Stylizacja dla komunikatów błędów */
+.message-error {
+    background-color: #f8d7da; /* Czerwone tło */
+    color: #721c24; /* Ciemnoczerwony tekst */
+    padding: 10px; /* Wewnętrzne marginesy */
+    margin-bottom: 20px; /* Zewnętrzne marginesy */
+    border-radius: 5px; /* Zaokrąglone rogi */
+}
+
+/* Stylizacja dla elementu select w dropdown */
+.meal-form .dropdown select {
+    flex-grow: 1;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: inset 0px 3px 10px #00000029, 0px 3px 50px #00000029;
+    border: 1px solid #707070;
+    border-radius: 28px;
+    font: normal normal normal 24px/28px Helvetica Neue;
+    letter-spacing: 0px;
+    color: #707070;
+    padding: 10px 20px;
+}
+
+
+
+/* Stylizacja dla elementu <i> w dropdown */
+.meal-form .dropdown i {
+    margin-right: 20px;
+    font: normal normal bold 24px/28px Helvetica Neue;
+    color: #707070;
+    letter-spacing: 0px;
+}
+
+.dropdown select {
+    flex-grow: 1; /* pozwala na rozciągnięcie do dostępnego miejsca */
+    padding: 10px; /* wewnętrzne marginesy */
+    border: 1px solid #ccc; /* obramowanie */
+    border-radius: 5px; /* zaokrąglone rogi */
+}
+
+
+
+@media screen and (max-width: 1000px) {
+    .base-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: row;
+    }
+
+    .meals {
+        display: block;
+        overflow: auto;
+    }
+
+    .meals>div {
+        width: 100%;
+        margin-bottom: 2em;
+    }
+    .button {
+        display: none;
+    }
+
+    nav {
+        width: 20vw;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    main {
+        width: 90vw;
+    }
+    .logo {
+        font: normal normal bold 30px/50px American Typewriter;
+        color: #ffffff;
+        margin-top: 0;
+        text-align: center;
+    }
+    li i {
+        font-size: 5em;
+        padding: 1em 0em;
+    }
+
+    .meals>div>div{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 5px;
+    }
+
+    h2 {
+        font: normal normal normal 44px/55px Helvetica Neue;
+    }
+
+    p {
+        font: normal normal normal 26px/32px Helvetica Neue;
+    }
+
+}
+
+
