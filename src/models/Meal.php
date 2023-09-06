@@ -12,8 +12,10 @@ class Meal
     private $dislike;
     private string $author;
 
+    private $id;
 
-    public function __construct($title, $preparation, $ingredients, $image, $category, $author="", $like=0, $dislike=0)
+
+    public function __construct($title, $preparation, $ingredients, $image, $category, $author="", $like=0, $dislike=0, ?int $id = null)
     {
         $this->title = $title;
         $this->preparation = $preparation;
@@ -23,7 +25,13 @@ class Meal
         $this->author = $author;
         $this->like = $like;
         $this->dislike = $dislike;
+        $this->id = $id;
     }
+
+    public function getId(): int {
+        return $this->id;
+    }
+
     public function getAuthor(): string
     {
         return $this->author;

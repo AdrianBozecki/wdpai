@@ -87,5 +87,34 @@ class MealController extends AppController {
         return true;
     }
 
+    public function getMealDetails() {
+        $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+        if ($contentType === "application/json") {
+            $id = $_GET['id'];
+
+            $mealDetails = $this->mealRepository->getMeal($id);
+
+            if ($mealDetails === null) {
+                http_response_code(404);
+                echo json_encode(['message' => 'Meal not found']);
+                return;
+            }
+            error_log(print_r($mealDetails, true));  // Dodanie logu
+            header('Content-type:application/json');
+            $mealArray = [
+                'title' => $mealDetails->getTitle(),
+                'preparation' => $mealDetails->getPreparation(),
+                'ingredients' => $mealDetails->getIngredients(),
+                'category' => $mealDetails->getCategory(),
+                'like'=> $mealDetails->getLike(),
+                'dislike'=> $mealDetails->getDislike()
+            ];
+
+            echo json_encode($mealArray);
+        }
+    }
+
+
 
 }

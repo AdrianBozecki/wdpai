@@ -12,5 +12,6 @@ Routing::post('addMeal', 'MealController');
 Routing::post('register', 'SecurityController');
 Routing::post('search', 'MealController');
 Routing::get('getMealsByCategory', 'MealController');
+Routing::get('getMealDetails', 'MealController');
 
 Routing::run($path);

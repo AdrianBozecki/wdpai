@@ -11,15 +11,14 @@ class MealRepository extends Repository
         $stmt = $this->database->connect()->prepare('
             SELECT * FROM public.meals WHERE id = :id
         ');
-        $stmt->bindParam(":email", $id, PDO::PARAM_INT);
+        $stmt->bindParam(":id", $id, PDO::PARAM_INT);
         $stmt->execute();
-
         $meal = $stmt->fetch(PDO::FETCH_ASSOC);
+
 
         if (!$meal) {
             return null;
         }
-
         return new Meal(
             $meal['title'],
             $meal['preparation'],
@@ -55,6 +54,7 @@ class MealRepository extends Repository
                 $meal['author'],
                 $meal['like'],
                 $meal['dislike'],
+                $meal['id'],
             );
         }
 
