@@ -37,10 +37,8 @@ class UserRepository extends Repository
         $db = $this->database->connect();  // Przechowuj jedną instancję PDO
 
         try {
-            // Rozpoczęcie transakcji
             $db->beginTransaction();
 
-            // Pierwsze zapytanie
             $stmt = $db->prepare('
             INSERT INTO user_details (name, lastname, phone)
             VALUES (?, ?, ?)
@@ -58,7 +56,6 @@ class UserRepository extends Repository
                 throw new Exception('Could not retrieve user details ID.');
             }
 
-            // Drugie zapytanie
             $stmt = $db->prepare('
             INSERT INTO users (email, password, id_user_details)
             VALUES (?, ?, ?)
@@ -70,10 +67,8 @@ class UserRepository extends Repository
                 $userDetailsId
             ]);
 
-            // Jeżeli wszystko poszło dobrze, zatwierdź transakcję
             $db->commit();
         } catch (Exception $e) {
-            // Jeżeli coś poszło nie tak, wycofaj transakcję
             $db->rollBack();
             throw $e;
         }

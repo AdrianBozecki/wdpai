@@ -9,6 +9,7 @@ class Database
     private $password;
     private $host;
     private $database;
+    private static $instance;
 
     public function __construct()
     {
@@ -16,6 +17,14 @@ class Database
         $this->password = 'dbpwd';
         $this->host = 'db';
         $this->database = 'postgres';
+    }
+
+    public static function getInstance(): self
+    {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+        return self::$instance;
     }
 
     public function connect()

@@ -8,7 +8,7 @@ $path = parse_url($path, PHP_URL_PATH);
 Routing::get('', 'DefaultController');
 Routing::get('meals', 'MealController');
 Routing::post('login', 'SecurityController');
-Routing::post('addMeal', 'MealController');
+Routing::post('addMeal', 'AddMealController');
 Routing::post('register', 'SecurityController');
 Routing::post('search', 'MealController');
 Routing::get('getMealsByCategory', 'MealController');
