@@ -61,17 +61,22 @@ function createMeal(meal) {
 
     const clone = template.content.cloneNode(true);
 
+    const mealDiv = clone.querySelector(".meal");
+    mealDiv.id = `meal-${meal.id}`;
+
     const image = clone.querySelector("img");
     image.src = `/public/uploads/${meal.image}`
 
     const title = clone.querySelector("h2");
     title.innerHTML = meal.title;
+
     const like = clone.querySelector(".fa-heart");
     like.innerText = meal.like;
+
     const dislike = clone.querySelector(".fa-minus-square");
     dislike.innerText = meal.dislike;
+
     const author = clone.querySelector(".author");
-    console.log(meal)
     author.innerText = `author: ${meal.author}`;
 
     mealContainer.appendChild(clone);
@@ -127,6 +132,7 @@ function openModalWithData(data) {
 
 function fetchMealDetails(mealId) {
     const url = `getMealDetails?id=${mealId}`;
+    console.log("wywolanie");
 
     fetch(url,
         {
@@ -145,13 +151,17 @@ function fetchMealDetails(mealId) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    document.querySelectorAll('.meal').forEach(function(mealElement) {
-        mealElement.addEventListener('click', function(event) {
-            const clickedElementId = event.currentTarget.id;
+    mealContainer.addEventListener('click', function(event) {
+        let mealElement = event.target;
+        while (mealElement && !mealElement.classList.contains('meal')) {
+            mealElement = mealElement.parentElement;
+        }
+        if (mealElement) {
+            const clickedElementId = mealElement.id;
             const mealId = clickedElementId.split('-')[1];
-
+            console.log(mealId);
             fetchMealDetails(mealId);
-        });
+        }
     });
 });
 
