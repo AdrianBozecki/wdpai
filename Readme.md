@@ -59,5 +59,4 @@ MealFuel to aplikacja webowa dedykowana do przeglądania i udostępniania przepi
 Adrian Bożęcki
 
 ## Schemat Bazy danych
-
-![Screenshot 2023-09-06 at 20.28.50.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Frb%2F65c8hh4j3cjbng7fscjpcpy40000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_VIPa4a%2FScreenshot%202023-09-06%20at%2020.28.50.png)
+![ERD.png](ERD.png)
