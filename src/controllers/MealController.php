@@ -8,9 +8,6 @@ require_once __DIR__ .'/../repository/MealRepository.php';
 
 class MealController extends AppController {
 
-    const MAX_FILE_SIZE = 1024*1024;
-    const SUPPORTED_TYPES = ['image/png', 'image/jpeg'];
-    const UPLOAD_DIRECTORY = '/../public/uploads/';
     private $messages = [];
     private $mealRepository;
 

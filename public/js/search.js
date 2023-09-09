@@ -114,10 +114,9 @@ function openModalWithData(data) {
     <div style="display: flex;">
         <img src="public/uploads/${data.image}" alt="${data.title}" style="width: 100%; max-width: 400px; margin-right: 20px">
         <div>
-            <h2>Meal Details</h2>
-            <p>name: ${data.title}</p>
-            <p>preparation: ${data.preparation}</p>
-            <p>ingredients: ${data.ingredients}</p>
+            <h2><strong>${data.title}</strong></h2>
+            <p><strong>preparation:</strong> ${data.preparation}</p>
+            <p><strong>ingredients:</strong> ${data.ingredients}</p>
         </div>
     </div>
 
