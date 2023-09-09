@@ -85,7 +85,7 @@
 </body>
 
 <template id="meal-template">
-    <div id="meal-1">
+    <div id="meal-1" class="meal">
         <img src="">
         <div class="space">
             <h2>title</h2>
